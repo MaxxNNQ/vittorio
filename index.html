@@ -1,87 +1,49 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Библиоторио Витторио</title>
-<style>
-body{margin:0;font-family:Arial;background:#0b0c10;color:#fff}
-header{padding:20px 24px}
-h1{margin:0 0 10px;font-size:22px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;padding:20px}
-.card{background:#111;border-radius:14px;overflow:hidden;cursor:pointer;border:1px solid #222}
-.card img{width:100%;aspect-ratio:2/3;object-fit:cover;background:#fff}
-.meta{padding:10px}
-.title{font-size:14px;font-weight:700;margin-bottom:4px}
-.author{font-size:12px;color:#aaa}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;padding:20px}
-.modal.open{display:flex}
-.panel{background:#111;border-radius:16px;max-width:900px;width:100%;display:grid;grid-template-columns:300px 1fr;overflow:hidden}
-.panel img{width:100%;height:100%;object-fit:cover;background:#fff}
-.panel-body{padding:20px}
-.close{position:absolute;top:20px;right:20px;background:#000;border:1px solid #444;color:#fff;padding:8px 12px;border-radius:8px;cursor:pointer}
-@media(max-width:700px){
-.panel{grid-template-columns:1fr}
-}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Каталог библиотеки</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<header>
-<h1>библиоторио витторио</h1>
-</header>
+  <header class="top">
+    <div class="wrap">
+      <div class="brand">
+        <h1 id="siteTitle">Каталог библиотеки</h1>
+        <p id="siteSubtitle" class="subtitle">Нажми на описание — увидишь, что внутри.</p>
+      </div>
 
-<div class="grid" id="grid"></div>
+      <div class="searchRow">
+        <input id="q" type="search" placeholder="Поиск по автору, названию, аннотации…" autocomplete="off" />
+        <span id="count" class="count"></span>
+      </div>
 
-<div class="modal" id="modal">
-<div class="panel">
-<img id="mCover"/>
-<div class="panel-body">
-<h2 id="mTitle"></h2>
-<div id="mAuthor" style="color:#aaa;margin-bottom:10px"></div>
-<p id="mDesc" style="line-height:1.5"></p>
-</div>
-</div>
-<button class="close" onclick="closeModal()">Закрыть</button>
-</div>
+      <div class="hint">
+        Подсказка: кликай по <b>карточке</b> или по <b>«Открыть описание»</b> — всплывёт окно с полной аннотацией.
+      </div>
+    </div>
+  </header>
 
-<script>
-let DATA=[];
+  <main class="wrap">
+    <div id="grid" class="grid" aria-live="polite"></div>
+  </main>
 
-async function load(){
- const r=await fetch('data.json?x=1');
- DATA=await r.json();
- render(DATA);
-}
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modalBackdrop" data-close="1"></div>
+    <div class="modalCard" role="dialog" aria-modal="true" aria-label="Аннотация">
+      <button class="close" title="Закрыть" data-close="1">×</button>
+      <div class="modalBody">
+        <img id="mCover" class="mCover" alt="" />
+        <div class="mText">
+          <div id="mAuthor" class="mAuthor"></div>
+          <div id="mTitle" class="mTitle"></div>
+          <div id="mDesc" class="mDesc"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-function render(items){
- const grid=document.getElementById('grid');
- grid.innerHTML='';
- items.forEach(b=>{
-  const el=document.createElement('div');
-  el.className='card';
-  el.innerHTML=`
-   <img src="${b.cover}">
-   <div class="meta">
-     <div class="title">${b.title}</div>
-     <div class="author">${b.author}</div>
-   </div>`;
-  el.onclick=()=>openModal(b);
-  grid.appendChild(el);
- });
-}
-
-function openModal(b){
- document.getElementById('mCover').src=b.cover;
- document.getElementById('mTitle').textContent=b.title;
- document.getElementById('mAuthor').textContent=b.author;
- document.getElementById('mDesc').textContent=b.desc;
- document.getElementById('modal').classList.add('open');
-}
-function closeModal(){
- document.getElementById('modal').classList.remove('open');
-}
-
-load();
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
