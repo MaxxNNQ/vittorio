@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Каталог библиотеки</title>
+<title>Библиотека</title>
 <style>
-:root { --bg:#0b0c10; --card:#11131a; --text:#e9e9ee; --muted:#b8b8c4; --border:#1f2230; }
+:root{--bg:#0b0c10;--card:#11131a;--text:#e9e9ee;--muted:#b8b8c4;--border:#1f2230;}
 *{box-sizing:border-box}
 body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#0b0c10,#06070a);color:var(--text)}
 header{padding:28px 20px 10px;max-width:1200px;margin:0 auto}
@@ -13,7 +13,7 @@ h1{margin:0 0 6px;font-size:22px;letter-spacing:.2px}
 .sub{color:var(--muted);font-size:14px;line-height:1.4}
 .wrap{max-width:1200px;margin:0 auto;padding:18px 16px 40px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
-.card{background:rgba(17,19,26,.85);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .12s ease, border-color .12s ease}
+.card{background:rgba(17,19,26,.85);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .12s ease,border-color .12s ease}
 .card:hover{transform:translateY(-2px);border-color:#2c3150}
 .cover{width:100%;aspect-ratio:2/3;object-fit:cover;display:block;background:#fff}
 .meta{padding:10px 10px 12px}
@@ -23,16 +23,16 @@ h1{margin:0 0 6px;font-size:22px;letter-spacing:.2px}
 input{flex:1;background:#0f1118;border:1px solid var(--border);border-radius:10px;color:var(--text);padding:10px 12px;font-size:14px;outline:none}
 input:focus{border-color:#3a4180}
 .pill{background:#0f1118;border:1px solid var(--border);border-radius:999px;padding:9px 12px;color:var(--muted);font-size:13px}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.62);display:none;align-items:center;justify-content:center;padding:18px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.62);display:none;align-items:center;justify-content:center;padding:18px;z-index:1000}
 .modal.open{display:flex}
 .panel{width:min(980px,100%);background:rgba(17,19,26,.95);border:1px solid #2a2f46;border-radius:18px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.55)}
 .panel-inner{display:grid;grid-template-columns:340px 1fr}
-@media (max-width:820px){ .panel-inner{grid-template-columns:1fr} }
+@media (max-width:820px){.panel-inner{grid-template-columns:1fr}}
 .panel-cover{width:100%;height:100%;object-fit:cover;display:block;background:#fff}
 .panel-body{padding:18px 18px 20px}
 .panel-title{margin:0 0 6px;font-size:20px}
 .panel-author{margin:0 0 14px;color:var(--muted)}
-.panel-desc{margin:0;color:#d7d7e2;line-height:1.55}
+.panel-desc{margin:0;color:#d7d7e2;line-height:1.55;white-space:pre-wrap}
 .topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid #262a3f;background:rgba(10,12,16,.6)}
 .btn{background:#0f1118;border:1px solid #2a2f46;color:var(--text);border-radius:10px;padding:8px 10px;cursor:pointer}
 .btn:hover{border-color:#3a4180}
@@ -40,8 +40,8 @@ input:focus{border-color:#3a4180}
 </head>
 <body>
 <header>
-  <h1>Каталог библиотеки — витрина</h1>
-  <div class="sub">Кликаешь по книге → открывается карточка с описанием. Обложки можно заменять на твои фото (как мы сделали со «Слёзы радости»).</div>
+  <h1>Библиотека</h1>
+  <div class="sub">12 книг. 6 обложек — твои. Остальные пока заглушки (поменяем на твои фото).</div>
   <div class="search">
     <input id="q" placeholder="Поиск по автору/названию…" />
     <div class="pill" id="count"></div>
@@ -69,7 +69,7 @@ input:focus{border-color:#3a4180}
 </div>
 
 <script>
-const DATA = [{"id": "mann_dark_side", "author": "Майкл Манн", "title": "Тёмная сторона демократии", "desc": "Аналитическая книга о том, как процессы национального строительства и демократизации в ряде случаев сопровождались этническими чистками и массовым насилием; разбор исторических примеров и причин этих механизмов.", "cover_file": "covers/mann_dark_side.svg"}, {"id": "rees_auschwitz", "author": "Лоуренс Рис", "title": "Освенцим", "desc": "Документальная реконструкция истории лагеря Освенцим на основе свидетельств узников, сотрудников и очевидцев; устройство лагерной системы и логика функционирования машины уничтожения.", "cover_file": "covers/rees_auschwitz.svg"}, {"id": "reck_diary", "author": "Фридрих Рек‑Малечевен", "title": "Дневник отчаявшегося", "desc": "Дневниковые записи противника нацизма о повседневности Третьего рейха: атмосфера, нравы, страх и деградация общества глазами очевидца.", "cover_file": "covers/reck_diary.svg"}, {"id": "stargardt_mobilized", "author": "Николас Старгардт", "title": "Мобилизованная нация. Германия 1939–1945", "desc": "История войны глазами обычных немцев — по письмам, дневникам и документам; как менялись ожидания, лояльность, страх и выживание в 1939–1945 годах.", "cover_file": "covers/stargardt_mobilized.svg"}, {"id": "yousef_son_of_hamas", "author": "Мосаб Хасан Юсеф", "title": "Сын Хамаса", "desc": "Автобиография сына одного из лидеров ХАМАС, ставшего информатором израильских спецслужб; путь изнутри движения, внутренний конфликт и разрыв с прошлым.", "cover_file": "covers/yousef_son_of_hamas.svg"}, {"id": "bergman_rise_kill_first", "author": "Ронен Бергман", "title": "Восстань и убей первым", "desc": "Исследование истории тайных операций и целевых ликвидаций израильских спецслужб; эволюция практики, кейсы, мотивы и последствия решений.", "cover_file": "covers/bergman_rise_kill_first.svg"}, {"id": "ibrahim_son_terrorist", "author": "Зак Ибрагим", "title": "Сын террориста", "desc": "Мемуары сына одного из организаторов теракта 1993 года в Нью‑Йорке: взросление в радикальной среде и личный выбор отказа от насилия и экстремизма.", "cover_file": "covers/ibrahim_son_terrorist.svg"}, {"id": "rafati_forgot_to_die", "author": "Халид Рафати", "title": "Я забыл умереть", "desc": "Автобиографическая история падения и восстановления: зависимость, разрушение жизни и выход к новой опоре и ответственности.", "cover_file": "covers/rafati_forgot_to_die.svg"}, {"id": "pozhivilko_tears_of_joy", "author": "Константин Поживилко", "title": "Слёзы радости. Как я разлагал израильскую армию", "desc": "Автобиографический текст о службе автора в израильской армии и его личном взгляде на военную систему и общество.", "cover_file": "covers/pozhivilko_tears_of_joy.jpg"}, {"id": "hastings_vietnam", "author": "Макс Хейстингс", "title": "Вьетнам. История трагедии 1945–1975", "desc": "Обширная история войны во Вьетнаме: политика, войны и люди с разных сторон конфликта — от 1945 года до 1975 года.", "cover_file": "covers/hastings_vietnam.svg"}, {"id": "hersey_hiroshima", "author": "Джон Херси", "title": "Хиросима", "desc": "Документальный рассказ о судьбах шести выживших после атомной бомбардировки Хиросимы; хроника момента и последствий.", "cover_file": "covers/hersey_hiroshima.svg"}, {"id": "buscher_berlin_moscow", "author": "Вольфганг Бюшер", "title": "Берлин — Москва. Пешее путешествие", "desc": "Путевые заметки о пешем маршруте из Берлина в Москву: наблюдения, встречи, бытовая география и исторические тени дороги.", "cover_file": "covers/buscher_berlin_moscow.svg"}];
+const DATA = [{"id": "mann_dark_side", "author": "Майкл Манн", "title": "Тёмная сторона демократии", "desc": "Аналитическая книга о том, как процессы национального строительства и демократизации в ряде случаев сопровождались этническими чистками и массовым насилием; разбор исторических примеров и причин этих механизмов.", "cover_file": "covers/mann_dark_side.jpg"}, {"id": "rees_auschwitz", "author": "Лоуренс Рис", "title": "Освенцим", "desc": "Документальная реконструкция истории лагеря Освенцим на основе свидетельств узников, сотрудников и очевидцев; устройство лагерной системы и логика функционирования машины уничтожения.", "cover_file": "covers/rees_auschwitz.svg"}, {"id": "reck_diary", "author": "Фридрих Рек-Маллечевен", "title": "Дневник отчаявшегося", "desc": "Дневниковые записи противника нацизма о повседневности Третьего рейха: атмосфера, страх и деградация общества глазами очевидца.", "cover_file": "covers/reck_diary.jpg"}, {"id": "stargardt_mobilized", "author": "Николас Старгардт", "title": "Мобилизованная нация. Германия 1939–1945", "desc": "История войны глазами обычных немцев — по письмам, дневникам и документам; как менялись ожидания, лояльность и выживание в 1939–1945 годах.", "cover_file": "covers/stargardt_mobilized.jpg"}, {"id": "yousef_son_of_hamas", "author": "Мосаб Хасан Юсеф, Рон Брэкин", "title": "Сын Хамаса", "desc": "Автобиография сына одного из лидеров ХАМАС, ставшего информатором израильских спецслужб; внутренний конфликт и разрыв с прошлым.", "cover_file": "covers/yousef_son_of_hamas.jpg"}, {"id": "bergman_rise_kill_first", "author": "Ронен Бергман", "title": "Восстань и убей первым", "desc": "Исследование истории тайных операций и целевых ликвидаций израильских спецслужб; кейсы, мотивы и последствия решений.", "cover_file": "covers/bergman_rise_kill_first.jpg"}, {"id": "ibrahim_son_terrorist", "author": "Зак Ибрагим", "title": "Сын террориста", "desc": "Мемуары сына одного из организаторов теракта 1993 года в Нью-Йорке: взросление в радикальной среде и личный выбор отказа от насилия и экстремизма.", "cover_file": "covers/ibrahim_son_terrorist.svg"}, {"id": "rafati_forgot_to_die", "author": "Халид Рафати", "title": "Я забыл умереть", "desc": "Автобиографическая история падения и восстановления: зависимость, разрушение жизни и выход к новой опоре и ответственности.", "cover_file": "covers/rafati_forgot_to_die.svg"}, {"id": "pozhivilko_tears_of_joy", "author": "Константин Поживилко", "title": "Слёзы радости. Как я разлагал израильскую армию", "desc": "Автобиографический текст о службе автора в израильской армии и его личном взгляде на военную систему и общество.", "cover_file": "covers/pozhivilko_tears_of_joy.jpg"}, {"id": "hastings_vietnam", "author": "Макс Хейстингс", "title": "Вьетнам. История трагедии 1945–1975", "desc": "Обширная история войны во Вьетнаме: политика, войны и люди с разных сторон конфликта — от 1945 года до 1975 года.", "cover_file": "covers/hastings_vietnam.svg"}, {"id": "hersey_hiroshima", "author": "Джон Херси", "title": "Хиросима", "desc": "Документальный рассказ о судьбах шести выживших после атомной бомбардировки Хиросимы; хроника момента и последствий.", "cover_file": "covers/hersey_hiroshima.svg"}, {"id": "buscher_berlin_moscow", "author": "Вольфганг Бюшер", "title": "Берлин — Москва. Пешее путешествие", "desc": "Путевые заметки о пешем маршруте из Берлина в Москву: наблюдения, встречи, бытовая география и дорога как история.", "cover_file": "covers/buscher_berlin_moscow.svg"}];
 const grid = document.getElementById('grid');
 const q = document.getElementById('q');
 const count = document.getElementById('count');
