@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1200" viewBox="0 0 800 1200">
-<rect width="800" height="1200" fill="#f4f4f5"/>
-<rect x="40" y="40" width="720" height="1120" fill="#ffffff" stroke="#111" stroke-width="4"/>
-<text x="60" y="160" font-size="42" font-family="DejaVu Sans, Arial" fill="#333">Халид Рафати</text>
-<text x="60" y="360" font-size="54" font-family="DejaVu Sans, Arial" font-weight="700" fill="#111">Я забыл умереть</text>
-<rect x="60" y="1020" width="680" height="6" fill="#111"/>
-<text x="60" y="1090" font-size="30" font-family="DejaVu Sans, Arial" fill="#666">Обложка будет заменена</text>
-</svg>
