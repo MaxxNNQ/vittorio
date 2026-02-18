@@ -1,44 +1,137 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Библиотека</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Библиотека — каталог</title>
 <style>
-body{font-family:Arial;background:#111;color:#fff;margin:0;padding:20px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:20px}
-.card{background:#1c1c1c;padding:10px;border-radius:8px}
-img{width:100%;height:260px;object-fit:cover;border-radius:6px}
+:root{
+  --bg:#0f0f10; --card:#17181a; --text:#f2f2f2; --muted:#b9bcc2; --border:#2a2c31;
+}
+*{box-sizing:border-box}
+body{margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif; background:var(--bg); color:var(--text);}
+.header{position:sticky; top:0; z-index:10; backdrop-filter:blur(10px); background:rgba(15,15,16,.75); border-bottom:1px solid var(--border);}
+.header-inner{max-width:1200px; margin:0 auto; padding:14px 16px; display:flex; gap:12px; align-items:center;}
+h1{font-size:18px; margin:0; letter-spacing:.2px;}
+.search{margin-left:auto; width:min(420px,55vw);}
+.search input{width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:#111214; color:var(--text); outline:none;}
+.search input::placeholder{color:#7e828b}
+.wrap{max-width:1200px; margin:0 auto; padding:18px 16px 40px;}
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:14px;}
+.card{background:var(--card); border:1px solid var(--border); border-radius:14px; overflow:hidden; cursor:pointer; transition:transform .08s ease;}
+.card:active{transform:scale(.99);}
+.cover{width:100%; aspect-ratio:2/3; background:#0b0b0c; display:block; object-fit:cover;}
+.meta{padding:10px 10px 12px;}
+.title{font-size:13px; line-height:1.25; margin:0 0 6px; font-weight:650;}
+.author{font-size:12px; line-height:1.2; margin:0; color:var(--muted);}
+.badge{font-size:12px; color:var(--muted); margin-left:8px; font-weight:500;}
+
+/* Modal */
+.modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; padding:18px; background:rgba(0,0,0,.62);}
+.modal.open{display:flex;}
+.dialog{width:min(980px,100%); max-height:min(86vh,860px); background:#121316; border:1px solid var(--border); border-radius:16px; overflow:hidden; display:grid; grid-template-columns:320px 1fr;}
+@media (max-width:780px){ .dialog{grid-template-columns:1fr;} }
+.dialog-cover{background:#0b0b0c; padding:14px; display:flex; align-items:center; justify-content:center;}
+.dialog-cover img{max-width:100%; max-height:64vh; border-radius:12px; object-fit:contain;}
+.dialog-body{padding:16px 16px 18px; overflow:auto;}
+.dialog-body h2{margin:0 0 6px; font-size:18px; line-height:1.2;}
+.dialog-body .a{margin:0 0 12px; color:var(--muted);}
+.dialog-body .note{margin:0; white-space:pre-wrap; line-height:1.45; font-size:14px; color:#e7e8ea;}
+.close{position:absolute; top:16px; right:16px; width:42px; height:42px; border-radius:12px; border:1px solid var(--border); background:rgba(18,19,22,.75); color:var(--text); cursor:pointer;}
 </style>
 </head>
 <body>
-<h1>Библиотека</h1>
-<div class="grid">
-<div class="card"><img src="covers/face_synhamasa.jpg"></div>
-<div class="card"><img src="covers/i761153.jpg"></div>
-<div class="card"><img src="covers/IMG_83E8DE76-DE8B-4328-AC29-A5C1C12D69F0.jpeg"></div>
-<div class="card"><img src="covers/635366bb9077beef7639942d0472eed8.jpg"></div>
-<div class="card"><img src="covers/IMG_F58FC991-DF86-4193-B6AC-DAED72F9F1CC.jpeg"></div>
-<div class="card"><img src="covers/images.jpg"></div>
-<div class="card"><img src="covers/484-0.webp"></div>
-<div class="card"><img src="covers/IMG_1E11359E-8681-4E90-9BDE-9DCE8D66474E.jpeg"></div>
-<div class="card"><img src="covers/IMG_0F0A78FC-E00F-4F8B-A107-7B16A787A064.jpeg"></div>
-<div class="card"><img src="covers/IMG_ED5920E7-E825-43B6-9EF6-CD1BB29B8E0A.jpeg"></div>
-<div class="card"><img src="covers/IMG_BF248EC8-83B0-4215-8905-559887A38C5F.jpeg"></div>
-<div class="card"><img src="covers/IMG_255FF944-C070-4D76-82BB-0CC1F214482A.jpeg"></div>
-<div class="card"><img src="covers/IMG_F47622C3-892C-491E-AE48-15E9D72A77BB.jpeg"></div>
-<div class="card"><img src="covers/IMG_6B55F7E3-B275-4951-BF66-5913B5BA5D7A.jpeg"></div>
-<div class="card"><img src="covers/IMG_20FE12D3-9D89-4F88-BD86-1BAD7BFEEE7F.jpeg"></div>
-<div class="card"><img src="covers/5B2AC1A4-95E1-446F-8A1B-E5F4AC84343C.jpeg"></div>
-<div class="card"><img src="covers/IMG_707043B4-14A4-4497-8FBD-D489258B6A03.jpeg"></div>
-<div class="card"><img src="covers/8292D1F9-B8D2-472E-8050-4A5135E3B2FF.jpeg"></div>
-<div class="card"><img src="covers/IMG_BC851FD4-CC4C-4881-A165-979DFCEFDBC4.jpeg"></div>
-<div class="card"><img src="covers/1D475A65-68A9-4160-A87C-4FD29F562227.jpeg"></div>
-<div class="card"><img src="covers/pozhivilko_slezy_radosti_card.png"></div>
-<div class="card"><img src="covers/484-0 (1).webp"></div>
-<div class="card"><img src="covers/27361684.jpg"></div>
-<div class="card"><img src="covers/berlin_-_moskva.jpg"></div>
-<div class="card"><img src="covers/Ebrahim-Terrorists-1000.jpg"></div>
-<div class="card"><img src="covers/018ee48d-3896-7937-bb90-9bded2a72f49.jpg"></div>
-</div></body></html>
+  <div class="header">
+    <div class="header-inner">
+      <h1>Библиотека <span class="badge" id="count"></span></h1>
+      <div class="search"><input id="q" placeholder="Поиск: автор или название" autocomplete="off" /></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true">
+    <button class="close" id="close" aria-label="Закрыть">✕</button>
+    <div class="dialog">
+      <div class="dialog-cover"><img id="mCover" alt=""></div>
+      <div class="dialog-body">
+        <h2 id="mTitle"></h2>
+        <p class="a" id="mAuthor"></p>
+        <p class="note" id="mNote"></p>
+      </div>
+    </div>
+  </div>
+
+<script>
+const BOOKS = [{"id": "rek", "author": "Фридрих Рек‑Маллечевен", "title": "Дневник отчаявшегося (1936–1944)", "cover": "rek.jpg", "note": "Дневниковые записи немецкого публициста о жизни в нацистской Германии: атмосфера страха, моральный распад, наблюдения очевидца и личное сопротивление режиму."}, {"id": "stargardt", "author": "Николас Старгардт", "title": "Мобилизованная нация. Германия 1939–1945", "cover": "stargardt.jpg", "note": "Исследование того, как войну переживали и поддерживали «обычные» немцы: настроения, пропаганда, фронт и тыл, изменения общества на фоне катастрофы 1939–1945."}, {"id": "bergman", "author": "Ронен Бергман", "title": "Восстань и убей первым", "cover": "bergman.jpg", "note": "История израильских целевых ликвидаций и спецопераций: как формировалась практика, ключевые эпизоды, дилеммы безопасности и морали."}, {"id": "son_hamas", "author": "Мусаб Хасан Юсеф (при участии Рона Брэккина)", "title": "Сын Хамаса", "cover": "son_hamas.jpg", "note": "Автобиографический рассказ сына одного из лидеров ХАМАС: путь внутри движения, конфликт убеждений, сотрудничество с израильской разведкой и личная цена выбора."}, {"id": "mann", "author": "Майкл Манн", "title": "Тёмная сторона демократии", "cover": "mann.jpg", "note": "О том, как демократические идеи и национализм могут приводить к насилию и «очищениям»: разбор механизмов массовой мобилизации и случаев в разных странах."}, {"id": "pozhivilko", "author": "Константин Поживилко", "title": "Слёзы радости. Как я разлагал израильскую армию", "cover": "pozhivilko.jpeg", "note": "Автобиографический текст о личном опыте службы автора в израильской армии, внутреннем конфликте и взгляде на военную систему и общество."}, {"id": "auschwitz", "author": "Лоуренс Рис", "title": "Освенцим. Нацисты и «окончательное решение еврейского вопроса»", "cover": "auschwitz.jpg", "note": "Документальный рассказ об истории Освенцима и механике уничтожения: свидетельства выживших и участников, роль лагеря в реализации «окончательного решения»."}, {"id": "buescher", "author": "Вольфганг Бюшер", "title": "Берлин — Москва. Пешее путешествие", "cover": "buescher.jpg", "note": "Дорожные заметки о пешем пути из Берлина в Москву: наблюдения, встречи, города и провинция, взгляд на пространство и людей по маршруту."}, {"id": "hiroshima", "author": "Джон Херси", "title": "Хиросима", "cover": "hiroshima.jpg", "note": "Классический репортаж о последствиях атомной бомбардировки: истории шести жителей Хиросимы, их опыт в первые часы и дальнейшая жизнь после взрыва."}, {"id": "vietnam", "author": "Макс Хейстингс", "title": "Вьетнам. История трагедии 1945–1975", "cover": "vietnam.jpg", "note": "Обширная хроника войны во Вьетнаме: политика и стратегия, повседневность войны, решения лидеров и цена конфликта для всех сторон."}, {"id": "rafati", "author": "Халил Рафати", "title": "Я забыл умереть", "cover": "rafati.jpg", "note": "Личный рассказ о падении, зависимости и возвращении к жизни: путь автора через кризис к восстановлению и помощи другим."}, {"id": "son_terrorist", "author": "Зак Ибрагим (при участии Джеффа Джайлса)", "title": "Сын террориста. История одного выбора", "cover": "son_terrorist.jpg", "note": "История сына участника теракта 1993 года в Нью‑Йорке: как жить с наследием отца и почему автор выбирает другой путь и другую идентичность."}];
+const grid = document.getElementById('grid');
+const q = document.getElementById('q');
+const count = document.getElementById('count');
+
+function esc(s){
+  return (s||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+function render(list){
+  grid.innerHTML = list.map(b => `
+    <div class="card" data-id="${esc(b.id)}">
+      <img class="cover" loading="lazy" src="covers/${esc(b.cover)}" alt="${esc(b.title)}">
+      <div class="meta">
+        <p class="title">${esc(b.title)}</p>
+        <p class="author">${esc(b.author)}</p>
+      </div>
+    </div>
+  `).join('');
+  count.textContent = `(${list.length})`;
+}
+
+const modal = document.getElementById('modal');
+const mCover = document.getElementById('mCover');
+const mTitle = document.getElementById('mTitle');
+const mAuthor = document.getElementById('mAuthor');
+const mNote = document.getElementById('mNote');
+
+function openBook(b){
+  mCover.src = `covers/${b.cover}`;
+  mCover.alt = b.title;
+  mTitle.textContent = b.title;
+  mAuthor.textContent = b.author;
+  mNote.textContent = b.note;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(){
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('close').addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+grid.addEventListener('click', (e) => {
+  const card = e.target.closest('.card');
+  if (!card) return;
+  const id = card.getAttribute('data-id');
+  const b = BOOKS.find(x => x.id === id);
+  if (b) openBook(b);
+});
+
+function applySearch(){
+  const s = (q.value||'').toLowerCase().trim();
+  if (!s) return render(BOOKS);
+  const list = BOOKS.filter(b =>
+    (b.title||'').toLowerCase().includes(s) ||
+    (b.author||'').toLowerCase().includes(s)
+  );
+  render(list);
+}
+q.addEventListener('input', applySearch);
+
+render(BOOKS);
+</script>
+</body>
+</html>
